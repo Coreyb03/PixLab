@@ -95,6 +95,67 @@ public class Picture extends SimplePicture {
 		}
 	}
 
+	public void keepOnlyBlue() {
+		Pixel[][] pixels = this.getPixels2D();
+		for (Pixel[] rowArray : pixels) {
+			for (Pixel pixelObj : rowArray) {
+				pixelObj.setRed(0);
+				pixelObj.setGreen(0);
+			}
+		}
+	}
+
+	public void negate() {
+		Pixel[][] pixels = this.getPixels2D();
+		for (Pixel[] rowArray : pixels) {
+			for (Pixel pixelObj : rowArray) {
+				Color newColor = new Color(255-pixelObj.getRed(),255-pixelObj.getGreen(),255-pixelObj.getBlue());
+				pixelObj.setColor(newColor);
+			}
+		}
+	}
+
+	public void grayscale() {
+		Pixel[][] pixels = this.getPixels2D();
+		for (Pixel[] rowArray : pixels) {
+			for (Pixel pixelObj : rowArray) {
+				int grayAvg = (pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue())/3;
+				Color newColor = new Color(grayAvg,grayAvg,grayAvg);
+				pixelObj.setColor(newColor);
+			}
+		}
+	}
+
+	
+	public void fixUnderwater()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+		int fishRed = 20;
+		int fishGreen = 170;
+		int fishBlue = 170;
+          if (Math.abs(pixelObj.getRed() - fishRed) > 10){
+            int grayAvg = (pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue())/3;
+				Color newColor = new Color(grayAvg,grayAvg,grayAvg);
+				pixelObj.setColor(newColor);
+          }
+          if (Math.abs(pixelObj.getGreen() - fishGreen) > 10){
+            int grayAvg = (pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue())/3;
+				Color newColor = new Color(grayAvg,grayAvg,grayAvg);
+				pixelObj.setColor(newColor);
+          }
+          if (Math.abs(pixelObj.getBlue() - fishBlue) > 10){
+			int grayAvg = (pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue())/3;
+			Color newColor = new Color(grayAvg,grayAvg,grayAvg);
+			pixelObj.setColor(newColor);
+          }
+      }
+    }
+  }   
+
 	/**
 	 * Method that mirrors the picture around a vertical mirror in the center of
 	 * the picture from left to right
