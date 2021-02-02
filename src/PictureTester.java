@@ -98,6 +98,22 @@ public class PictureTester
     temple.mirrorTemple();
     temple.explore();
   }
+
+  public static void testMirrorSnowman()
+  {
+    Picture temple = new Picture("snowman.jpg");
+    temple.explore();
+    temple.mirrorSnowman();
+    temple.explore();
+  }
+
+  public static void testMirrorSeagull()
+  {
+    Picture temple = new Picture("seagull.jpg");
+    temple.explore();
+    temple.mirrorSeagull();
+    temple.explore();
+  }
   
   /** Method to test the collage method */
   public static void testCollage()
@@ -135,8 +151,10 @@ public class PictureTester
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
-    testMirrorHorizontalBottomToTop();
-    testMirrorDiagonal();
+    // testMirrorHorizontalBottomToTop();
+    // testMirrorDiagonal();
+    //testMirrorSnowman();
+    testMirrorSeagull();
     //testCollage();
     //testCopy();
     //testEdgeDetection();
