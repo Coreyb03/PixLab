@@ -403,6 +403,41 @@ public class Picture extends SimplePicture {
 					leftPixel.setColor(Color.WHITE);
 			}
 		}
+		Pixel[][] pixels2 = this.getPixels2D();
+		Pixel topPixel = null;
+		Pixel bottomPixel = null;
+		Color bottomColor = null;
+		for (int row = 0; row < pixels2.length -1; row++) {
+			for (int col = 0; col < pixels2[0].length; col++) {
+				topPixel = pixels2[row][col];
+				bottomPixel = pixels2[row + 1][col];
+				bottomColor = bottomPixel.getColor();
+				if (topPixel.colorDistance(bottomColor) > edgeDist)
+					topPixel.setColor(Color.black);
+				// else
+				// 	topPixel.setColor(Color.WHITE);
+			}
+		}
+
+	}
+
+	public void edgeDetection2(){
+		this.grayscale();
+		Pixel[][] pixels = this.getPixels2D();
+		
+		for (int row = 0; row < pixels.length; row++) {
+			for (int col = 0; col < pixels[0].length; col++) {
+				Color pixelColor = pixels[row][col].getColor();
+				if (pixelColor.getRed() >= 256/2){
+					pixels[row][col].setColor(Color.WHITE);
+				} else {
+					pixels[row][col].setColor(Color.BLACK);
+				}
+			}
+		}
+		this.edgeDetection(1);
+
+
 	}
 
 	/*
